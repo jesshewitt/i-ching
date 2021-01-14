@@ -1,4 +1,4 @@
-import Hexagrams from '../../data/Hexagrams.js'
+import Hexagrams from '../../../data/Hexagrams.js'
 
 function getLines() {
     let lines = ''

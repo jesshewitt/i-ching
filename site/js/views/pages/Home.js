@@ -1,5 +1,5 @@
-import Hexagrams    from '../../data/Hexagrams.js'
-import Trigrams     from '../../data/Trigrams.js'
+import Hexagrams    from '../../../data/Hexagrams.js'
+import Trigrams     from '../../../data/Trigrams.js'
 
 
 let Home = {
