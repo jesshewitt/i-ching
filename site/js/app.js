@@ -43,7 +43,7 @@ const router = async () => {
     
     // generate requested page if parsed URL is in our supported routes, otherwise generate 404 page
     let page = routes[parsedURL] ? routes[parsedURL] : Error404
-    content.innerHTML = await page.render()
+    content.innerHTML = await page.render(request.id)
     await page.afterRender()
 
     // reset scroll on page change

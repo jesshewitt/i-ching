@@ -1,5 +1,4 @@
 import Hexagrams from '../../../data/Hexagrams.js'
-import Utils     from '../../services/Utils.js'
 
 
 let getHexagram = async (id) => {
@@ -45,14 +44,13 @@ function getSVG(values) {
 }
 
 let Hexagram = { 
-    render: async () => {
-        let request = Utils.parseRequestURL()
-        let hexagram = await getHexagram(request.id)
+    render: async (id) => {
+        let hexagram = await getHexagram(id)
         // show error if hexagram not found
         if (!hexagram.id) {
             let view = `
                 <h2>Not Found</h2>
-                Hexagram ${request.id} was not found. Try this <a href='#/'>list of hexagrams</a>.
+                Hexagram ${id} was not found. Try this <a href='#/'>list of hexagrams</a>.
             `
 
             return view

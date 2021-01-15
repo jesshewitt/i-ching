@@ -1,6 +1,8 @@
 import Hexagrams from '../../../data/Hexagrams.js'
+const {ranjs} = window
 
-function getLines() {
+function getLines(seed) {
+    ranjs.core.seed(seed)
     let lines = ''
 
     // generate six lines for hexagram
@@ -10,7 +12,7 @@ function getLines() {
         // for each line, flip 3 coins and sum values. heads = 3, tails = 2
         // result should be 6, 7, 8, or 9
         for (let j = 0; j < 3; j++) {
-            Math.random() < 0.5 ? sum += 2 : sum += 3
+            ranjs.core.float() < 0.5 ? sum += 2 : sum += 3
         } 
         lines += sum.toString()
     }
@@ -57,8 +59,8 @@ function getSVG(values) {
     return svg.join('\n')
 }
 
-let getReading = async () => {
-    let changing = getLines()
+let getReading = async (id) => {
+    let changing = getLines(id)
     let hasChanging = false
 
     // replace changing lines (6, 9) with static lines (7, 8) for lookup
@@ -100,8 +102,8 @@ let getReading = async () => {
 }
 
 let Reading = {
-    render: async () => {
-        let reading = await getReading()
+    render: async (id) => {
+        let reading = await getReading(id)
         let svglines = getSVG(reading.changing)
         let changing = reading.changing.split('').reverse()
 
