@@ -149,7 +149,7 @@ inmost natures seek one another. Water flows to what is wet, fire turns to
 what is dry. Clouds (the breath of heaven) follow the dragon, wind (the breath 
 of earth) follows the tiger. Thus the sage arises, and all creatures follow him 
 with their eyes. What is born of heaven feels related to what is above. What 
-is born of earth feels related to what is below. Each follows its kind.`,`
+is born of earth feels related to what is below. Each follows its kind.`, `
 When a man seeks to climb so high that he loses touch with the rest of 
 mankind, he becomes isolated, and this necessarily leads to failure. This line 
 warns against titanic aspirations that exceed one's power. A precipitous fall 

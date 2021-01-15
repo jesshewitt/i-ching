@@ -30,9 +30,7 @@ const router = async () => {
     
     // render the header and footer
     header.innerHTML = await Header.render()
-    await Header.afterRender()
     footer.innerHTML = await Footer.render()
-    await Footer.afterRender()
 
     // parse the URL, retrieving id from the :id segment
     let request = Utils.parseRequestURL()
@@ -41,7 +39,6 @@ const router = async () => {
     // generate requested page if parsed URL is in our supported routes, otherwise generate 404 page
     let page = routes[parsedURL] ? routes[parsedURL] : Error404
     content.innerHTML = await page.render(request.id)
-    await page.afterRender()
 
     // reset scroll on page change
     window.scrollTo(0, 0)

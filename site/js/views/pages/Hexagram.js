@@ -1,4 +1,4 @@
-import Hexagrams from '../../../data/Hexagrams.js'
+import Hexagrams from '../../../data/hexagrams.js'
 
 
 let getHexagram = async (id) => {
@@ -78,7 +78,7 @@ let Hexagram = {
 
             <h3>Changing Lines</h3>
             <div id='lines'>
-                ${hexagram.lines.map((line, index) => {
+                ${hexagram.lines.map((line, index) => { 
                     return `<div class='pre'>${hexagram.lines[index]}</div>
                     <div class='comment'>${hexagram.linesCommentary[index]}</div>`
                 }).join('\n')}
@@ -86,9 +86,7 @@ let Hexagram = {
         `
 
         return view
-    },
-    afterRender: async () => {}
-        
+    }   
 }
 
 export default Hexagram

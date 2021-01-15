@@ -1,5 +1,5 @@
-import Hexagrams    from '../../../data/Hexagrams.js'
-import Trigrams     from '../../../data/Trigrams.js'
+import Hexagrams    from '../../../data/hexagrams.js'
+import Trigrams     from '../../../data/trigrams.js'
 
 
 let Home = {
@@ -23,8 +23,7 @@ let Home = {
         `
         
         return view
-    }, 
-    afterRender: async () => {}
+    }
 }
 
 export default Home

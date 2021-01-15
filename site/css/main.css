@@ -18,13 +18,6 @@ body {
     padding: 0 10%;
 }
 
-@media only screen and (max-width: 600px) {
-    body {
-        font-size: 0.85em;
-        padding: 0 5%;
-    }
-}
-
 .comment {
     color: #aaa;
 }
@@ -40,7 +33,7 @@ h1 {
 
 h2 {
     letter-spacing: 0.05em; 
-    margin: 0.5em 0;
+    margin: 1em 0 0.5em 0;
 }
 
 h3 {
@@ -61,6 +54,7 @@ nav > ul {
 nav > ul > li {
     padding-right: 1em;
     float: left;
+    font-size: 1em;
 }
 
 .pre {
@@ -75,5 +69,12 @@ nav > ul > li {
 ul {
     list-style-type: none;
     padding-left: 0;
+}
+
+
+@media screen and (max-width: 800px) {
+    body {
+        padding: 0 5%;
+    }
 }
 

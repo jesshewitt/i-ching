@@ -6,9 +6,7 @@ let Footer = {
         `
 
         return view
-    },
-
-    afterRender: async () => {}    
+    }  
 }
 
 export default Footer;

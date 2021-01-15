@@ -23,8 +23,7 @@ let About = {
         `
 
         return view
-    },
-    afterRender: async () => {}     
+    }   
 }
 
 export default About

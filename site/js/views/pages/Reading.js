@@ -1,4 +1,4 @@
-import Hexagrams from '../../../data/Hexagrams.js'
+import Hexagrams from '../../../data/hexagrams.js'
 const {ranjs} = window
 
 function getLines(seed) {
@@ -156,9 +156,7 @@ let Reading = {
         }
 
         return view
-    },
-    afterRender: async () => {}
-        
+    }     
 }
 
 export default Reading

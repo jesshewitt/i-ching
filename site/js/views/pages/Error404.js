@@ -10,8 +10,7 @@ let Error404 = {
         `
 
         return view
-    },
-    afterRender: async () => {}    
+    }   
 }
 
 export default Error404

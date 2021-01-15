@@ -13,9 +13,7 @@ let Header = {
         `
 
         return view
-    },
-    
-    afterRender: async () => {}    
+    }
 }
 
 export default Header
