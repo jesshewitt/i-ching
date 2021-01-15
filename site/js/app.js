@@ -1,13 +1,13 @@
 // vanilla js SPA framework, adapted from https://github.com/rishavs/vanillajs-spa
 
-import About        from './views/pages/About.js'
-import Error404     from './views/pages/Error404.js'
-import Footer       from './views/components/Footer.js'
-import Header       from './views/components/Header.js'
-import Hexagram     from './views/pages/Hexagram.js'
-import Home         from './views/pages/Home.js'
-import Reading      from './views/pages/Reading.js'
-import Utils        from './services/Utils.js'
+import About        from './views/pages/about.js'
+import Error404     from './views/pages/error404.js'
+import Footer       from './views/components/footer.js'
+import Header       from './views/components/header.js'
+import Hexagram     from './views/pages/hexagram.js'
+import Home         from './views/pages/home.js'
+import Reading      from './views/pages/reading.js'
+import Utils        from './services/utils.js'
 
 
 // supported routes - any other url will throw a 404 error
@@ -34,12 +34,9 @@ const router = async () => {
     footer.innerHTML = await Footer.render()
     await Footer.afterRender()
 
-
-    // get the parsed request URL
+    // parse the URL, retrieving id from the :id segment
     let request = Utils.parseRequestURL()
-
-    // further parse the URL, retrieving id from the :id segment
-    let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '')
+    let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.action ? '/' + request.action : '')
     
     // generate requested page if parsed URL is in our supported routes, otherwise generate 404 page
     let page = routes[parsedURL] ? routes[parsedURL] : Error404

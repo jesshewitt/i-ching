@@ -9,12 +9,12 @@ const Utils = {
         let request = {
             resource: null,
             id: null,
-            verb: null
+            action: null
         }
         request.url = url
         request.resource = r[1]
         request.id = r[2]
-        request.verb = r[3]
+        request.action = r[3]
 
         return request
     },

@@ -4,24 +4,17 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./css/main.css">
-        <link rel="icon" href="./img/favicon.png">
-        <link rel="apple-touch-icon" href="./img/favicon.png">
-        <link rel="manifest" href="./manifest.json">
+		<link rel="icon" href="./img/favicon.png">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
         <script defer type="module" src="./js/app.js"></script>
-        <title>I Ching</title>
+        <title>I Ching - Offline</title>
     </head>
     <body>
         <header></header>
-		<main></main>
+		<main>Unable to connect to the internet!</main>
         <footer></footer>
 
         <script type="text/javascript" src="./js/ranjs.min.js"></script>
-        <script>
-            navigator.serviceWorker && navigator.serviceWorker.register('./js/sw.js').then(function(registration) {
-                console.log('Excellent, registered with scope: ', registration.scope)
-            })
-        </script>
     </body>
 </html>

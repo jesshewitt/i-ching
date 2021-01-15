@@ -1,0 +1,19 @@
+{
+    "name": "simple i ching",
+    "short_name": "i ching",
+    "description": "i ching app",
+    "theme_color": "#bb2828",
+    "background_color": "#111",
+    "display": "fullscreen",
+    "orientation":"portrait",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "./img/icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
