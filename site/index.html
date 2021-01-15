@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=0.5,maximum-scale=5,minimum-scale=0.5,width=device-width">
+        <meta name="Description" content="Simple I Ching App">
+        <meta name="theme-color" content="#bb2828"/>
         <link rel="stylesheet" href="./css/main.css">
         <link rel="icon" href="./img/favicon.png">
         <link rel="apple-touch-icon" href="./img/favicon.png">
@@ -13,15 +16,16 @@
         <title>I Ching</title>
     </head>
     <body>
+        <noscript>This site requires javascript.</noscript>
         <header></header>
 		<main></main>
         <footer></footer>
 
-        <script type="text/javascript" src="./js/ranjs.min.js"></script>
         <script>
             navigator.serviceWorker && navigator.serviceWorker.register('./sw.js').then(function(registration) {
                 console.log('Excellent, registered with scope: ', registration.scope)
             })
         </script>
+        <script type="text/javascript" src="./js/ranjs.min.js"></script>
     </body>
 </html>
