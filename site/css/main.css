@@ -47,6 +47,10 @@ h3 {
     letter-spacing: 0.05em; 
 }
 
+header {
+    margin-bottom: 1em;
+}
+
 nav > ul {
     list-style-type: none;
     margin: 0.25em;
@@ -64,8 +68,8 @@ nav > ul > li {
 }
 
 .red {
-    color: #8c2828;
-    fill: #8c2828;
+    color: #bb2828;
+    fill: #bb2828;
 }
 
 ul {

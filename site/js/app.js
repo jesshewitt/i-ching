@@ -24,9 +24,9 @@ const routes = {
 const router = async () => {
 
     // lazy load view element:
-    const header = null || document.getElementById('header')
-    const content = null || document.getElementById('content')
-    const footer = null || document.getElementById('footer')
+    const header = null || document.querySelector('header')
+    const content = null || document.querySelector('main')
+    const footer = null || document.querySelector('footer')
     
     // render the header and footer
     header.innerHTML = await Header.render()
