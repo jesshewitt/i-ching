@@ -3,7 +3,7 @@ import Trigrams     from '../../../data/trigrams.js'
 
 
 let Home = {
-    render: async () => {
+    render: () => {
         let view =  `
             <h2>Trigrams</h2>
             <ul>

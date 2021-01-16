@@ -1,7 +1,7 @@
 
 let About = {
-    render: async () => {
-        let view =  await `
+    render: () => {
+        let view = `
             <h2>About</h2>
             <p>The <b>I Ching</b> (Book of Changes) is an ancient Chinese divination text and the oldest of the Chinese classics. 
             Possessing a history of more than two and a half millennia of commentary and interpretation, the <b>I Ching</b> is an influential 

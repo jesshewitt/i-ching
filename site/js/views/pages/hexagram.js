@@ -1,7 +1,7 @@
 import Hexagrams from '../../../data/hexagrams.js'
 
 
-let getHexagram = async (id) => {
+function getHexagram(id) {
     let hexRef = {}
     let hexagrams = Hexagrams.hexagrams()
     for (let i = 0; i < hexagrams.length; i++) {
@@ -44,8 +44,10 @@ function getSVG(values) {
 }
 
 let Hexagram = { 
-    render: async (id) => {
-        let hexagram = await getHexagram(id)
+    render: (id) => {
+        // look up hexagram by its id
+        let hexagram = getHexagram(id)
+
         // show error if hexagram not found
         if (!hexagram.id) {
             let view = `
@@ -56,6 +58,7 @@ let Hexagram = {
             return view
         }
 
+        // create the SVG representation of the hexagram
         let svglines = getSVG(hexagram.value)
         
         // reverse order so that top line is first
