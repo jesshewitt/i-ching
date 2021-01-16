@@ -7,7 +7,6 @@ import Header       from './views/components/header.js'
 import Hexagram     from './views/pages/hexagram.js'
 import Home         from './views/pages/home.js'
 import Reading      from './views/pages/reading.js'
-import Utils        from './services/utils.js'
 
 
 // supported routes - any other url will throw a 404 error
@@ -19,6 +18,17 @@ const routes = {
     '/reading': Reading
 }
 
+//  parse a url and break it into resource and id
+const parseRequestURL = () => {
+    let url = location.hash.slice(1).toLowerCase() || '/'
+    let r = url.split('/')
+
+    return {
+        url,
+        resource: r[1],
+        id: r[2]
+    }
+}
 
 // the router code - compares URL to the list of supported routes and then renders the corresponding page
 const router = async () => {
@@ -32,9 +42,9 @@ const router = async () => {
     header.innerHTML = await Header.render()
     footer.innerHTML = await Footer.render()
 
-    // parse the URL, retrieving id from the :id segment
-    let request = Utils.parseRequestURL()
-    let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.action ? '/' + request.action : '')
+    // parse the URL
+    let request = parseRequestURL()
+    let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '')
     
     // generate requested page if parsed URL is in our supported routes, otherwise generate 404 page
     let page = routes[parsedURL] ? routes[parsedURL] : Error404

@@ -9,7 +9,6 @@ self.addEventListener('install', function(e) {
                 './css/main.css',
                 './img/favicon.png',
                 './img/icon.png',
-                './js/services/utils.js',
                 './js/views/components/footer.js',
                 './js/views/components/header.js',
                 './js/pages/about.js',
