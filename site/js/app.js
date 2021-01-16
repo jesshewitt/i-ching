@@ -31,7 +31,7 @@ const parseRequestURL = () => {
 }
 
 // the router code - compares URL to the list of supported routes and then renders the corresponding page
-const router = async () => {
+const router = () => {
 
     // lazy load view element:
     const header = null || document.querySelector('header')
@@ -39,8 +39,8 @@ const router = async () => {
     const footer = null || document.querySelector('footer')
     
     // render the header and footer
-    header.innerHTML = await Header.render()
-    footer.innerHTML = await Footer.render()
+    header.innerHTML = Header.render()
+    footer.innerHTML = Footer.render()
 
     // parse the URL
     let request = parseRequestURL()
@@ -48,7 +48,7 @@ const router = async () => {
     
     // generate requested page if parsed URL is in our supported routes, otherwise generate 404 page
     let page = routes[parsedURL] ? routes[parsedURL] : Error404
-    content.innerHTML = await page.render(request.id)
+    content.innerHTML = page.render(request.id)
 
     // reset scroll on page change
     window.scrollTo(0, 0)

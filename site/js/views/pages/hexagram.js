@@ -1,70 +1,68 @@
 import Hexagrams from '../../../data/hexagrams.js'
 
+class Hexagram {
 
-function getHexagram(id) {
-    let hexRef = {}
-    let hexagrams = Hexagrams.hexagrams()
-    for (let i = 0; i < hexagrams.length; i++) {
-        if (hexagrams[i].id == id) {
-            hexRef = hexagrams[i]
-            break
+    static getHexagram(id) {
+        // look up hexagram by id
+        let hex = {}
+        let hexagrams = Hexagrams.hexagrams()
+        if (id >= 0 && id <= hexagrams.length) {
+            hex = hexagrams[id - 1]
         }
+    
+        return hex
     }
 
-    return hexRef
-}
+    // create the 6 lines of the hexagram in SVG
+    static getSVG(values) {
+        let lines = values.split('')
+        let svg = []
 
-function getSVG(values) {
-    let lines = values.split('')
-    let svg = []
-
-    for (let i = 0; i < lines.length; i++) {
-        let line = lines[i]
-        let lineOffset = (i * 9.09 * 2).toString() + '%'
-        let out
-        switch (line) {
-        case '7':
-            out = `<rect x='0' y='${lineOffset}' width='100%' height='9.09%' class='black' /></rect>`
-            break
-        case '8':
-            out = `
-                <g>
-                    <rect x='0' y='${lineOffset}' width='40%' height='9.09%' class='black' /></rect>
-                    <rect x='60%' y='${lineOffset}' width='40%' height='9.09%' class='black' /></rect>
-                </g>`
-            break
-        default:
-            out = ''
-            break
+        for (let i = 0; i < lines.length; i++) {
+            let line = lines[i]
+            let lineOffset = (i * 9.09 * 2).toString() + '%'
+            let out
+            switch (line) {
+            case '7':
+                out = `<rect x='0' y='${lineOffset}' width='100%' height='9.09%' class='black' /></rect>`
+                break
+            case '8':
+                out = `
+                    <g>
+                        <rect x='0' y='${lineOffset}' width='40%' height='9.09%' class='black' /></rect>
+                        <rect x='60%' y='${lineOffset}' width='40%' height='9.09%' class='black' /></rect>
+                    </g>`
+                break
+            default:
+                out = ''
+                break
+            }
+            svg.push(out)
         }
-        svg.push(out)
+
+        return svg.join('\n')
     }
 
-    return svg.join('\n')
-}
-
-let Hexagram = { 
-    render: (id) => {
+    static render(id) {
         // look up hexagram by its id
-        let hexagram = getHexagram(id)
+        let hexagram = Hexagram.getHexagram(id)
 
-        // show error if hexagram not found
+        // return error if hexagram not found
         if (!hexagram.id) {
-            let view = `
+            return `
                 <h2>Not Found</h2>
                 Hexagram ${id} was not found. Try this <a href='#/'>list of hexagrams</a>.
             `
-
-            return view
         }
 
         // create the SVG representation of the hexagram
-        let svglines = getSVG(hexagram.value)
+        let svglines = Hexagram.getSVG(hexagram.value)
         
         // reverse order so that top line is first
         hexagram.lines = hexagram.lines.reverse()
         hexagram.linesCommentary = hexagram.linesCommentary.reverse()
 
+        // return page content
         let view =  `
             <svg id='svglines' width='64' height='64' viewBox='0 0 100 100'>${svglines}</svg>
             <h2>
@@ -89,7 +87,7 @@ let Hexagram = {
         `
 
         return view
-    }   
+    }
 }
 
 export default Hexagram

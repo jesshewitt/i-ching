@@ -1,12 +1,10 @@
-
-let Footer = {
-    render: async () => {
-        let view =  `
+class Footer {
+    // hidden message in page footer for fun
+    static render() {
+        return `
             <!-- The footer that can be named is not the true footer -->
         `
-
-        return view
-    }  
+    }
 }
 
-export default Footer;
+export default Footer

@@ -1,7 +1,7 @@
-
-let Header = {
-    render: async () => {
-        let view =  `
+class Header {
+    // return the page header with navigation links, reading link with generated random seed
+    static render() {
+        return `
             <h1> I Ching </h1>
             <nav>
                 <ul>
@@ -11,8 +11,6 @@ let Header = {
                 </ul>
             </nav>
         `
-
-        return view
     }
 }
 

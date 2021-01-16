@@ -1,10 +1,10 @@
 import Hexagrams    from '../../../data/hexagrams.js'
 import Trigrams     from '../../../data/trigrams.js'
 
-
-let Home = {
-    render: () => {
-        let view =  `
+class Home {
+    // create and return the page view, with a list of trigrams and hexagrams
+    static render() {
+        return `
             <h2>Trigrams</h2>
             <ul>
             ${Trigrams.trigrams().map((tri) => 
@@ -21,8 +21,6 @@ let Home = {
                 }
             </ul>
         `
-        
-        return view
     }
 }
 

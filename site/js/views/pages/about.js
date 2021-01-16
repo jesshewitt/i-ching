@@ -1,7 +1,7 @@
-
-let About = {
-    render: () => {
-        let view = `
+class About {
+    // create and return page content about the i ching
+    static render() {
+        return `
             <h2>About</h2>
             <p>The <b>I Ching</b> (Book of Changes) is an ancient Chinese divination text and the oldest of the Chinese classics. 
             Possessing a history of more than two and a half millennia of commentary and interpretation, the <b>I Ching</b> is an influential 
@@ -21,9 +21,7 @@ let About = {
                 <li><a href="http://ctext.org/book-of-changes">Chinese Text Project</a></li>
             </ul>
         `
-
-        return view
-    }   
+    }
 }
 
 export default About

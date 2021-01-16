@@ -1,12 +1,11 @@
-let Error404 = {   
-    render: () => {
-        let view = `
+class Error404 {
+    // create and return page content for 404 errors
+    static render() {
+        return `
             <h2> Error! </h2>
             The requested page was not found.
         `
-
-        return view
-    }   
+    }
 }
 
 export default Error404
