@@ -1,36 +1,34 @@
-import Hexagrams from '../../../data/hexagrams.js'
+import hexagrams from '/data/hexagrams.json' with { type: 'json' }
+import {html, raw} from '../../html.js'
 
 class Hexagram {
 
     static getHexagram(id) {
         // look up hexagram by id
-        let hex = {}
-        let hexagrams = Hexagrams.hexagrams()
-        if (id >= 0 && id <= hexagrams.length) {
-            hex = hexagrams[id - 1]
+        if (id >= 1 && id <= hexagrams.length) {
+            return hexagrams[id - 1]
         }
-    
-        return hex
+        return {}
     }
 
     // create the 6 lines of the hexagram in SVG
     static getSVG(values) {
-        let lines = values.split('')
-        let svg = []
+        const lines = values.split('')
+        const svg = []
 
         for (let i = 0; i < lines.length; i++) {
-            let line = lines[i]
-            let lineOffset = (i * 9.09 * 2).toString() + '%'
+            const line = lines[i]
+            const lineOffset = (i * 9.09 * 2).toString() + '%'
             let out
             switch (line) {
             case '7':
-                out = `<rect x='0' y='${lineOffset}' width='100%' height='9.09%' class='black' /></rect>`
+                out = `<rect x='0' y='${lineOffset}' width='100%' height='9.09%' class='black' />`
                 break
             case '8':
                 out = `
                     <g>
-                        <rect x='0' y='${lineOffset}' width='40%' height='9.09%' class='black' /></rect>
-                        <rect x='60%' y='${lineOffset}' width='40%' height='9.09%' class='black' /></rect>
+                        <rect x='0' y='${lineOffset}' width='40%' height='9.09%' class='black' />
+                        <rect x='60%' y='${lineOffset}' width='40%' height='9.09%' class='black' />
                     </g>`
                 break
             default:
@@ -45,48 +43,52 @@ class Hexagram {
 
     static render(id) {
         // look up hexagram by its id
-        let hexagram = Hexagram.getHexagram(id)
+        const hexagram = Hexagram.getHexagram(id)
 
         // return error if hexagram not found
         if (!hexagram.id) {
-            return `
+            return html`
                 <h2>Not Found</h2>
-                Hexagram ${id} was not found. Try this <a href='#/'>list of hexagrams</a>.
+                Hexagram ${id} was not found. Try this <a href='/'>list of hexagrams</a>.
             `
         }
 
         // create the SVG representation of the hexagram
-        let svglines = Hexagram.getSVG(hexagram.value)
-        
-        // reverse order so that top line is first
-        hexagram.lines = hexagram.lines.reverse()
-        hexagram.linesCommentary = hexagram.linesCommentary.reverse()
+        const svglines = Hexagram.getSVG(hexagram.value)
+        const char = hexagram.cname.split(' ')[0]
+        const label = `Hexagram ${hexagram.id}: ${char} ${hexagram.ename}`
 
-        // return page content
-        let view =  `
-            <svg id='svglines' width='64' height='64' viewBox='0 0 100 100'>${svglines}</svg>
+        // reverse so that top line is first (non-destructive)
+        const lines = hexagram.lines.slice().reverse()
+        const linesCommentary = hexagram.linesCommentary.slice().reverse()
+
+        return html`
+            <svg class='svglines' role='img' width='64' height='64' viewBox='0 0 100 100'>
+                <title>${label}</title>
+                ${raw(svglines)}
+            </svg>
             <h2>
-                <span id='id'>${hexagram.id}</span>.
-                <span id='cename'>${hexagram.cename}</span> - 
-                <span id='ename'>${hexagram.ename}</span>
+                <span class='hex-id'>${hexagram.id}</span>.
+                <span class='cname'>${char}</span>
+                <span class='cename'>${hexagram.cename}</span>
+                -
+                <span class='ename'>${hexagram.ename}</span>
             </h2>
 
-            <div id='commentary' class='comment'>${hexagram.commentary}</div>
-            <div id='judgment' class='pre'>${hexagram.judgment}</div>
-            <div id='judgmentcommentary' class='comment'>${hexagram.judgmentCommentary}</div>
-            <div id='image' class='pre'>${hexagram.image}</div>
-            <div id='imagecommentary' class='comment'>${hexagram.imageCommentary}</div>
+            <div class='commentary comment'>${hexagram.commentary}</div>
+            <div class='judgment pre'>${hexagram.judgment}</div>
+            <div class='judgment-commentary comment'>${hexagram.judgmentCommentary}</div>
+            <div class='image pre'>${hexagram.image}</div>
+            <div class='image-commentary comment'>${hexagram.imageCommentary}</div>
 
             <h3>Changing Lines</h3>
-            <div id='lines'>
-                ${hexagram.lines.map((line, index) => { 
-                    return `<div class='pre'>${hexagram.lines[index]}</div>
-                    <div class='comment'>${hexagram.linesCommentary[index]}</div>`
-                }).join('\n')}
+            <div class='lines'>
+                ${lines.map((line, i) => html`
+                    <div class='pre'>${line}</div>
+                    <div class='comment'>${linesCommentary[i]}</div>
+                `)}
             </div>
         `
-
-        return view
     }
 }
 

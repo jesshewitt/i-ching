@@ -1,24 +1,187 @@
+/* Lora: friendly humanist serif, used for body text. Two subsets: basic Latin
+   covers most prose; latin-ext covers pinyin diacritics like ē, ī, ǎ. */
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/lora-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/lora-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Subsetted Noto Serif TC, ~71 Han characters used across hexagram and trigram cnames.
+   unicode-range restricts loading to pages that actually render CJK characters. */
+@font-face {
+    font-family: 'Noto Serif TC';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/noto-serif-tc-subset.woff2') format('woff2');
+    unicode-range: U+4E00-9FFF;
+}
+
+/* Subsetted Noto Sans Symbols 2 covering only the Yijing Hexagram Symbols block
+   (U+4DC0-4DFF). Used to render the 64 hexagram glyphs in the home list. */
+@font-face {
+    font-family: 'Noto Sans Symbols 2';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/noto-symbols-2-hexagrams.woff2') format('woff2');
+    unicode-range: U+4DC0-4DFF;
+}
+
+:root {
+    color-scheme: dark light;
+
+    --bg: #13110d;
+    --text: #f4ecd8;
+    --text-muted: #b8ad99;
+    --accent: #bb2828;
+    --line: #f4ecd8;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg: #f4ecd8;
+        --text: #2a2520;
+        --text-muted: #6b5f50;
+        --accent: #a02222;
+        --line: #2a2520;
+    }
+}
+
+/* Explicit overrides from the in-app theme toggle. Higher specificity beats the @media rule. */
+:root.theme-dark {
+    color-scheme: dark;
+    --bg: #13110d;
+    --text: #f4ecd8;
+    --text-muted: #b8ad99;
+    --accent: #bb2828;
+    --line: #f4ecd8;
+}
+
+:root.theme-light {
+    color-scheme: light;
+    --bg: #fefefe;
+    --text: #222;
+    --text-muted: #555;
+    --accent: #a02222;
+    --line: #222;
+}
+
 a {
-    color: #bb2828;
+    color: var(--accent);
     text-decoration: none;
 }
 
-.black {
-    color: #333;
-    fill: #333;
-}
-
 body {
-    background-color: #111;
-    color: #eee;
-    font-family: 'Varela Round', sans-serif;
-    letter-spacing: 0.05em; 
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Lora', 'Noto Serif TC', 'Noto Sans Symbols 2', 'Songti TC', 'STSong', 'PMingLiU', 'Microsoft JhengHei', 'Apple Symbols', 'Segoe UI Symbol', Georgia, 'Times New Roman', serif;
+    letter-spacing: 0.03em;
     margin: 0 auto;
     padding: 0 10%;
 }
 
+/* Match the breathing room that an h2 (margin-top: 1em) gives the about/home pages,
+   so hexagram/reading pages don't feel cramped under the nav. Scoped to the first svg
+   in main so the inline SVGs inside .changingHexagrams aren't pushed around. */
+main > svg.svglines:first-of-type {
+    margin-top: 1em;
+}
+
+.black {
+    color: var(--line);
+    fill: var(--line);
+}
+
+.red {
+    color: var(--accent);
+    fill: var(--accent);
+    /* non-color indicator: changing lines get a contrasting outline */
+    stroke: var(--line);
+    stroke-width: 1.5;
+}
+
 .comment {
-    color: #aaa;
+    color: var(--text-muted);
+}
+
+/* Trigram list as a 4-column grid: glyph, Chinese, Wade-Giles, English. */
+.tri-grid {
+    display: grid;
+    grid-template-columns: auto auto auto 1fr;
+    gap: 0.15em 0.75em;
+    list-style: none;
+    padding: 0;
+}
+
+.tri-grid > li {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    gap: inherit;
+    align-items: center;
+}
+
+.tri-glyph {
+    color: var(--accent);
+}
+
+/* Hexagram list as a 5-column grid: number, glyph, Chinese, Wade-Giles, English.
+   Subgrid on the <li> and the <a> means the columns align across all rows even
+   though the link wraps an entire row's worth of content. */
+.hex-grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto 1fr;
+    gap: 0 0.75em;
+    list-style: none;
+    padding: 0;
+}
+
+.hex-grid > li {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+}
+
+.hex-row {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    gap: inherit;
+    text-decoration: none;
+    color: inherit;
+    align-items: baseline;
+}
+
+.hex-row:hover,
+.hex-row:focus-visible {
+    color: var(--accent);
+}
+
+.hex-glyph {
+    font-family: 'Noto Sans Symbols 2', 'Apple Symbols', 'Segoe UI Symbol', sans-serif;
+    color: var(--accent);
+}
+
+.hex-num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.hex-cename {
+    color: var(--text-muted);
 }
 
 div {
@@ -26,40 +189,58 @@ div {
 }
 
 h1 {
-    letter-spacing: 0.05em; 
     margin-bottom: 0.1em;
 }
 
 h2 {
-    letter-spacing: 0.05em; 
     margin: 1em 0 0.5em 0;
-}
-
-h3 {
-    letter-spacing: 0.05em; 
 }
 
 nav > ul {
     list-style-type: none;
     margin: 0.75em 0.25em 0 0;
-    padding-bottom: 1em;
-    overflow: hidden;
+    padding: 0 0 1em 0;
+    display: flex;
+    gap: 1em;
 }
 
 nav > ul > li {
-    padding-right: 1em;
-    float: left;
     font-size: 1em;
     font-weight: bold;
 }
 
-.pre {
-    white-space: pre-wrap;
+nav > ul > li:last-child {
+    margin-left: auto;
 }
 
-.red {
-    color: #bb2828;
-    fill: #bb2828;
+.theme-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    /* fixed box so cycling icons does not shift surrounding layout */
+    display: inline-block;
+    min-width: 1.5em;
+    text-align: center;
+    line-height: 1;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+    color: var(--accent);
+}
+
+nav a[aria-current="page"] {
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 2px solid var(--accent);
+}
+
+.pre {
+    white-space: pre-wrap;
 }
 
 ul {
@@ -67,10 +248,15 @@ ul {
     padding-left: 0;
 }
 
+.changingHexagrams {
+    display: grid;
+    grid-template-columns: min-content max-content min-content;
+    gap: 1em 1em;
+    align-items: center;
+}
 
 @media screen and (max-width: 800px) {
     body {
         padding: 0 5%;
     }
 }
-

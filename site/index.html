@@ -5,13 +5,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="Description" content="Simple I Ching App">
         <meta name="theme-color" content="#bb2828"/>
-        <link rel="stylesheet" href="./css/main.css">
-        <link rel="icon" href="./img/favicon.png">
-        <link rel="apple-touch-icon" href="./img/favicon.png">
-        <link rel="manifest" href="./manifest.json">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-        <script defer type="module" src="./js/app.js"></script>
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="icon" href="/img/favicon.png">
+        <link rel="apple-touch-icon" href="/img/favicon.png">
+        <link rel="manifest" href="/manifest.json">
+        <script>
+            // Apply saved theme before body renders to avoid a light/dark flash.
+            try {
+                const t = localStorage.getItem('i-ching-theme')
+                if (t === 'dark' || t === 'light') document.documentElement.classList.add('theme-' + t)
+            } catch (e) {}
+        </script>
+        <script defer type="module" src="/js/app.js"></script>
         <title>I Ching</title>
     </head>
     <body>
@@ -21,10 +26,7 @@
         <footer></footer>
 
         <script>
-            navigator.serviceWorker && navigator.serviceWorker.register('./sw.js').then(function(registration) {
-                console.log('Excellent, registered with scope: ', registration.scope)
-            })
+            navigator.serviceWorker && navigator.serviceWorker.register('/sw.js')
         </script>
-        <script type="text/javascript" src="./js/ranjs.min.js"></script>
     </body>
 </html>

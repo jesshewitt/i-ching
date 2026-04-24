@@ -1,24 +1,36 @@
-import Hexagrams    from '../../../data/hexagrams.js'
-import Trigrams     from '../../../data/trigrams.js'
+import hexagrams from '/data/hexagrams.json' with { type: 'json' }
+import trigrams from '/data/trigrams.json' with { type: 'json' }
+import {html} from '../../html.js'
 
 class Home {
     // create and return the page view, with a list of trigrams and hexagrams
     static render() {
-        return `
+        return html`
             <h2>Trigrams</h2>
-            <ul>
-            ${Trigrams.trigrams().map((tri) => 
-                `<li>${tri.unicode} ${tri.cename} - ${tri.ename}</li>`
-                ).join('\n')
-            }
+            <ul class="tri-grid">
+                ${trigrams.map(tri => html`
+                    <li>
+                        <span class="tri-glyph">${tri.unicode}</span>
+                        <span class="hex-cname">${tri.cname.split(' ')[0]}</span>
+                        <span class="hex-cename">${tri.cename}</span>
+                        <span class="hex-ename">${tri.ename}</span>
+                    </li>
+                `)}
             </ul>
 
             <h2>Hexagrams</h2>
-            <ul>    
-                ${Hexagrams.hexagrams().map((hex) => 
-                    `<li><a href="#/hexagram/${hex.id}">${hex.id}. ${hex.cename} - ${hex.ename}</a></li>`
-                    ).join('\n')
-                }
+            <ul class="hex-grid">
+                ${hexagrams.map(hex => html`
+                    <li>
+                        <a href="/hexagram/${hex.id}" class="hex-row">
+                            <span class="hex-num">${hex.id}.</span>
+                            <span class="hex-glyph">${String.fromCodePoint(0x4DBF + hex.id)}</span>
+                            <span class="hex-cname">${hex.cname.split(' ')[0]}</span>
+                            <span class="hex-cename">${hex.cename}</span>
+                            <span class="hex-ename">${hex.ename}</span>
+                        </a>
+                    </li>
+                `)}
             </ul>
         `
     }
