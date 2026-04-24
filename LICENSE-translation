@@ -1,0 +1,26 @@
+English translation of the I Ching in this repository
+(site/data/hexagrams.json, site/data/trigrams.json, and
+translation/hexagrams-wilhelm.json)
+
+Translated by Claude (Anthropic), 2026, from Richard Wilhelm's 1924 German
+edition (I Ging: Das Buch der Wandlungen).
+Edited by Jess Hewitt.
+
+This translation is dedicated to the public domain under the Creative Commons
+CC0 1.0 Universal Public Domain Dedication.
+
+To the extent possible under law, the contributors named above have waived all
+copyright and related or neighboring rights to this translation. The work is
+published from the United States.
+
+You can copy, modify, distribute and perform the work, even for commercial
+purposes, all without asking permission.
+
+Full legal code: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+Summary (human-readable): https://creativecommons.org/publicdomain/zero/1.0/
+
+----
+
+Note: This dual-licensing arrangement applies only to the translation text.
+The application code in this repository remains under the MIT license; see
+LICENSE for details.
