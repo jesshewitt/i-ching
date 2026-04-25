@@ -66,6 +66,12 @@ class Reading {
         return svg.join('\n')
     }
 
+    static title(seed) {
+        const reading = Reading.getReading(seed)
+        if (!reading.id) return 'I Ching | Reading'
+        return `I Ching | Reading ${reading.id} ${reading.cename}`
+    }
+
     static getReading(seed) {
         // get the changing lines for the reading
         const changing = Reading.getLines(seed)

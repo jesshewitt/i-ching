@@ -20,6 +20,7 @@ self.addEventListener('install', function(e) {
                 './js/views/pages/hexagram.js',
                 './js/views/pages/home.js',
                 './js/views/pages/reading.js',
+                './js/views/pages/trigram.js',
                 './js/app.js',
                 './js/html.js',
                 './js/rng.js',
@@ -28,8 +29,6 @@ self.addEventListener('install', function(e) {
                 './data/trigrams.json',
                 './sw.js'
             ])
-        }).catch(function(err) { 
-            console.log(err) 
         })
     )
 })

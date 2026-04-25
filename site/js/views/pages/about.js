@@ -1,20 +1,16 @@
 import {html} from '../../html.js'
 
 class About {
+    static title() { return 'I Ching | About' }
+
     // create and return page content about the i ching
     static render() {
         return html`
             <h2>About</h2>
-            <p>The <b>I Ching</b> (Book of Changes) is an ancient Chinese divination text and the oldest of the Chinese classics.
-            Possessing a history of more than two and a half millennia of commentary and interpretation, the <b>I Ching</b> is an influential
-            text read throughout the world, providing inspiration to the worlds of religion, psychoanalysis, business, literature, and art.</p>
-
-            <p>The <b>I Ching</b> uses a type of divination called cleromancy, which produces apparently random numbers.
-            Six numbers between 6 and 9 are turned into a <a href="/">hexagram</a>, which can then be looked up in the <b>I Ching</b> book,
-            arranged in an order known as the King Wen sequence. The interpretation of the readings found in the <b>I Ching</b> is
-            a matter of centuries of debate, and many commentators have used the book symbolically, often to provide guidance
-            for moral decision making as informed by Taoism and Confucianism.</p>
-            <a href="https://en.wikipedia.org/wiki/I_Ching">I Ching on Wikipedia</a>
+            <p>The <b>I Ching</b> (Book of Changes) is one of the oldest Chinese books still in use, with roots going back over two thousand years.
+            It's built from 64 <a href="/">hexagrams</a>: stacks of six lines, each either yin (broken) or yang (solid). A reading produces one of
+            these, sometimes with changing lines that turn it into a second. The accompanying texts give you something to reflect on. It's been read
+            as oracle, philosophical work, and psychological mirror.</p>
 
             <h2>About this translation</h2>
             <p>The English text on this site is an original translation of Richard Wilhelm's 1924 German edition,
@@ -37,7 +33,6 @@ class About {
             <h2>More Information</h2>
             <ul>
                 <li><a href="https://en.wikipedia.org/wiki/I_Ching_divination">Wikipedia - I Ching divination</a></li>
-                <li><a href="http://www.jamesdekorne.com/GBCh/ichingdl.htm">Gnostic Book of Changes</a></li>
                 <li><a href="http://ctext.org/book-of-changes">Chinese Text Project</a></li>
             </ul>
         `

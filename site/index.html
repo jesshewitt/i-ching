@@ -3,11 +3,21 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="Description" content="Simple I Ching App">
-        <meta name="theme-color" content="#bb2828"/>
+        <meta name="description" content="A free I Ching reference and 3-coin reading app, using an original public-domain English translation of Richard Wilhelm's 1924 German edition.">
+        <meta name="theme-color" content="#f4ecd8" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#13110d" media="(prefers-color-scheme: dark)">
+
+        <!-- Open Graph (link previews on social and chat apps). The title and description
+             are static; client-side routing means crawlers see the home page values. -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="I Ching">
+        <meta property="og:description" content="A free reference and 3-coin reading app for the I Ching.">
+        <meta property="og:image" content="/img/icon.png">
+        <meta name="twitter:card" content="summary">
+
         <link rel="stylesheet" href="/css/main.css">
         <link rel="icon" href="/img/favicon.png">
-        <link rel="apple-touch-icon" href="/img/favicon.png">
+        <link rel="apple-touch-icon" href="/img/icon.png">
         <link rel="manifest" href="/manifest.json">
         <script>
             // Apply saved theme before body renders to avoid a light/dark flash.

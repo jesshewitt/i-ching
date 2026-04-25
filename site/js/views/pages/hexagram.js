@@ -1,5 +1,9 @@
 import hexagrams from '/data/hexagrams.json' with { type: 'json' }
+import trigrams from '/data/trigrams.json' with { type: 'json' }
 import {html, raw} from '../../html.js'
+
+// look up a trigram by its 3-character binary value
+const findTri = value => trigrams.find(t => t.value === value) || {}
 
 class Hexagram {
 
@@ -9,6 +13,12 @@ class Hexagram {
             return hexagrams[id - 1]
         }
         return {}
+    }
+
+    static title(id) {
+        const hex = Hexagram.getHexagram(id)
+        if (!hex.id) return 'I Ching | Not Found'
+        return `I Ching | Hexagram ${hex.id} ${hex.cename}`
     }
 
     // create the 6 lines of the hexagram in SVG
@@ -58,6 +68,10 @@ class Hexagram {
         const char = hexagram.cname.split(' ')[0]
         const label = `Hexagram ${hexagram.id}: ${char} ${hexagram.ename}`
 
+        // hexagram value runs top-down: value[0..2] is the upper trigram, value[3..5] the lower.
+        const upper = findTri(hexagram.value.slice(0, 3))
+        const lower = findTri(hexagram.value.slice(3, 6))
+
         // reverse so that top line is first (non-destructive)
         const lines = hexagram.lines.slice().reverse()
         const linesCommentary = hexagram.linesCommentary.slice().reverse()
@@ -74,6 +88,11 @@ class Hexagram {
                 -
                 <span class='ename'>${hexagram.ename}</span>
             </h2>
+
+            <ul class='trigram-pair'>
+                <li>Above: <a href='/trigram/${upper.value}'><span class='tri-glyph'>${upper.unicode}</span> ${upper.cname.split(' ')[0]} <span class='hex-cename'>${upper.cename}</span> ${upper.ename}</a></li>
+                <li>Below: <a href='/trigram/${lower.value}'><span class='tri-glyph'>${lower.unicode}</span> ${lower.cname.split(' ')[0]} <span class='hex-cename'>${lower.cename}</span> ${lower.ename}</a></li>
+            </ul>
 
             <div class='commentary comment'>${hexagram.commentary}</div>
             <div class='judgment pre'>${hexagram.judgment}</div>

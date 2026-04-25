@@ -1,6 +1,8 @@
 import {html} from '../../html.js'
 
 class Error404 {
+    static title() { return 'I Ching | Not Found' }
+
     // create and return page content for 404 errors
     static render() {
         return html`

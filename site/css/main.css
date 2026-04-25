@@ -90,7 +90,7 @@ body {
     font-family: 'Lora', 'Noto Serif TC', 'Noto Sans Symbols 2', 'Songti TC', 'STSong', 'PMingLiU', 'Microsoft JhengHei', 'Apple Symbols', 'Segoe UI Symbol', Georgia, 'Times New Roman', serif;
     letter-spacing: 0.03em;
     margin: 0 auto;
-    padding: 0 10%;
+    padding: 0 10% 2rem 10%;
 }
 
 /* Match the breathing room that an h2 (margin-top: 1em) gives the about/home pages,
@@ -135,6 +135,62 @@ main > svg.svglines:first-of-type {
 }
 
 .tri-glyph {
+    color: var(--accent);
+}
+
+/* Trigram detail heading: the unicode glyph (☰) is taller than the surrounding text,
+   so flex-align it to center rather than baseline. */
+.trigram-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+}
+
+/* Trigram rows center-align: the unicode glyph (☰) is taller than the surrounding text. */
+.tri-grid .hex-row {
+    align-items: center;
+}
+
+/* Trigram detail page: structured associations (attribute, image, family, etc.)
+   as a two-column term/value grid. */
+.trigram-info {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.15em 1em;
+    margin: 0.75em 0 1em 0;
+    padding-bottom: 0;
+}
+
+.trigram-info dt {
+    color: var(--text-muted);
+}
+
+.trigram-info dd {
+    margin: 0;
+}
+
+/* The comma-separated symbol list on the trigram page; default-ish but tighter. */
+.trigram-symbols {
+    margin: 0 0 0.75em 0;
+    padding-bottom: 0;
+}
+
+/* Compact "Above: ... / Below: ..." trigram pair on the hexagram detail page. */
+.trigram-pair {
+    margin: 0.5em 0 1em 0;
+}
+
+.trigram-pair li {
+    margin: 0.15em 0;
+}
+
+.trigram-pair a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.trigram-pair a:hover,
+.trigram-pair a:focus-visible {
     color: var(--accent);
 }
 

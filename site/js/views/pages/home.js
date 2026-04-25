@@ -10,10 +10,12 @@ class Home {
             <ul class="tri-grid">
                 ${trigrams.map(tri => html`
                     <li>
-                        <span class="tri-glyph">${tri.unicode}</span>
-                        <span class="hex-cname">${tri.cname.split(' ')[0]}</span>
-                        <span class="hex-cename">${tri.cename}</span>
-                        <span class="hex-ename">${tri.ename}</span>
+                        <a href="/trigram/${tri.value}" class="hex-row">
+                            <span class="tri-glyph">${tri.unicode}</span>
+                            <span class="hex-cname">${tri.cname.split(' ')[0]}</span>
+                            <span class="hex-cename">${tri.cename}</span>
+                            <span class="hex-ename">${tri.ename}</span>
+                        </a>
                     </li>
                 `)}
             </ul>

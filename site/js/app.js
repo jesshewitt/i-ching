@@ -7,6 +7,7 @@ import Header       from './views/components/header.js'
 import Hexagram     from './views/pages/hexagram.js'
 import Home         from './views/pages/home.js'
 import Reading      from './views/pages/reading.js'
+import Trigram      from './views/pages/trigram.js'
 import {cycleTheme} from './theme.js'
 
 
@@ -15,6 +16,7 @@ const routes = {
     '/': Home,
     '/about': About,
     '/hexagram/:id': Hexagram,
+    '/trigram/:id': Trigram,
     '/reading/:id': Reading,
     '/reading': Reading
 }
@@ -50,6 +52,7 @@ const router = () => {
     // generate requested page if parsed URL is in our supported routes, otherwise generate 404 page
     let page = routes[parsedURL] ? routes[parsedURL] : Error404
     content.innerHTML = page.render(request.id)
+    document.title = typeof page.title === 'function' ? page.title(request.id) : 'I Ching'
 
     // reset scroll on page change
     window.scrollTo(0, 0)

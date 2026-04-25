@@ -4,7 +4,7 @@
     "description": "An app for I Ching readings and reference",
     "theme_color": "#bb2828",
     "background_color": "#13110d",
-    "display": "fullscreen",
+    "display": "standalone",
     "orientation":"portrait",
     "scope": "/",
     "start_url": "/",
